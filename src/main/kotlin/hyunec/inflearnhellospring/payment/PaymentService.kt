@@ -11,7 +11,14 @@ import java.util.stream.Collectors
 
 class PaymentService {
     fun prepare(orderId: Long, currency: String, foreignCurrencyAmount: BigDecimal): Payment { // 환율 가져오기
-        // 환율 가져오기
+        val exRate = getExRate(currency)
+        val convertedAmount = foreignCurrencyAmount.multiply(exRate)
+        val validUntil = LocalDateTime.now().plusMinutes(30)
+
+        return Payment(orderId, currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil)
+    }
+
+    private fun getExRate(currency: String): BigDecimal {
         val url = URL("https://open.er-api.com/v6/latest/${currency}")
         val connection = url.openConnection() as HttpURLConnection
         val br = BufferedReader(InputStreamReader(connection.inputStream))
@@ -21,15 +28,7 @@ class PaymentService {
         val mapper = ObjectMapper()
         val data = mapper.readValue(response, ExRateData::class.java)
         val exRate = data.rates["KRW"]!!
-        println(exRate)
-
-        // 금액 계산
-        val convertedAmount = foreignCurrencyAmount.multiply(exRate)
-
-        // 유효 시간 계산
-        val validUntil = LocalDateTime.now().plusMinutes(30)
-
-        return Payment(orderId, currency, foreignCurrencyAmount, exRate, convertedAmount, validUntil)
+        return exRate
     }
 }
 
