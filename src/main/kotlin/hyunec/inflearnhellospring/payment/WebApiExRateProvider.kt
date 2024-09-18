@@ -19,6 +19,9 @@ class WebApiExRateProvider: ExRateProvider {
         val mapper = ObjectMapper()
         val data = mapper.readValue(response, ExRateData::class.java)
         val exRate = data.rates["KRW"]!!
+
+        println("### API ExRate: $exRate")
+
         return exRate
     }
 }
