@@ -1,5 +1,6 @@
-package hyunec.inflearnhellospring.payment
+package hyunec.inflearnhellospring.payment.exrate
 
+import hyunec.inflearnhellospring.payment.payment.ExRateProvider
 import java.math.BigDecimal
 
 class SimpleExRateProvider: ExRateProvider {

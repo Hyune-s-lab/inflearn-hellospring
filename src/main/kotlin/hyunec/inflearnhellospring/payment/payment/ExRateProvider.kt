@@ -1,4 +1,4 @@
-package hyunec.inflearnhellospring.payment
+package hyunec.inflearnhellospring.payment.payment
 
 import java.math.BigDecimal
 

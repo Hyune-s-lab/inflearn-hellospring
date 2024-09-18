@@ -1,6 +1,7 @@
-package hyunec.inflearnhellospring.payment
+package hyunec.inflearnhellospring.payment.exrate
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import hyunec.inflearnhellospring.payment.payment.ExRateProvider
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.math.BigDecimal
