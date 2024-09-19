@@ -1,4 +1,4 @@
-package hyunec.inflearnhellospring.payment.payment
+package hyunec.inflearnhellospring.payment
 
 import java.math.BigDecimal
 import java.time.LocalDateTime

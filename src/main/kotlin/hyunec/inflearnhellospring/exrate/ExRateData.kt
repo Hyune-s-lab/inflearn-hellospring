@@ -1,4 +1,4 @@
-package hyunec.inflearnhellospring.payment.exrate
+package hyunec.inflearnhellospring.exrate
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import java.math.BigDecimal

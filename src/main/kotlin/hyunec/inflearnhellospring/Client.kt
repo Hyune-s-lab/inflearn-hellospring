@@ -1,6 +1,6 @@
-package hyunec.inflearnhellospring.payment
+package hyunec.inflearnhellospring
 
-import hyunec.inflearnhellospring.payment.payment.PaymentService
+import hyunec.inflearnhellospring.payment.PaymentService
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.math.BigDecimal
 

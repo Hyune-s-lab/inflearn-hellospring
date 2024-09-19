@@ -1,9 +1,9 @@
-package hyunec.inflearnhellospring.payment
+package hyunec.inflearnhellospring
 
-import hyunec.inflearnhellospring.payment.exrate.CachedExRateProvider
-import hyunec.inflearnhellospring.payment.exrate.WebApiExRateProvider
-import hyunec.inflearnhellospring.payment.payment.ExRateProvider
-import hyunec.inflearnhellospring.payment.payment.PaymentService
+import hyunec.inflearnhellospring.exrate.CachedExRateProvider
+import hyunec.inflearnhellospring.exrate.WebApiExRateProvider
+import hyunec.inflearnhellospring.payment.ExRateProvider
+import hyunec.inflearnhellospring.payment.PaymentService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
