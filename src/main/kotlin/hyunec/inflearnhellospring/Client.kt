@@ -7,7 +7,7 @@ import java.math.BigDecimal
 class Client {}
 
 fun main(args: Array<String>) {
-    val beanFactory = AnnotationConfigApplicationContext(ObjectFactory::class.java)
+    val beanFactory = AnnotationConfigApplicationContext(PaymentConfig::class.java)
     val paymentService = beanFactory.getBean(PaymentService::class.java)
 
     val payment1 = paymentService.prepare(100, "USD", BigDecimal(50.7))

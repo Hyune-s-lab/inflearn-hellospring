@@ -6,12 +6,13 @@ import hyunec.inflearnhellospring.payment.ExRateProvider
 import hyunec.inflearnhellospring.payment.PaymentService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import java.time.Clock
 
 @Configuration
-class ObjectFactory {
+class PaymentConfig {
     @Bean
     fun paymentService(): PaymentService {
-        return PaymentService(cachedExRateProvider())
+        return PaymentService(cachedExRateProvider(), clock())
     }
 
     @Bean
@@ -22,5 +23,10 @@ class ObjectFactory {
     @Bean
     fun cachedExRateProvider(): CachedExRateProvider {
         return CachedExRateProvider(exRateProvider())
+    }
+
+    @Bean
+    fun clock(): Clock {
+        return Clock.systemDefaultZone()
     }
 }
