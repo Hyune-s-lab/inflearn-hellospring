@@ -11,7 +11,12 @@ import java.util.stream.Collectors
 
 class WebApiExRateProvider: ExRateProvider {
     override fun getExRate(currency: String): BigDecimal {
-        val uri = URI("https://open.er-api.com/v6/latest/${currency}")
+        val url = "https://open.er-api.com/v6/latest/${currency}"
+        return runApiForExRate(url)
+    }
+
+    private fun runApiForExRate(url: String): BigDecimal {
+        val uri = URI(url)
         val response = executeApi(uri)
         return parseExRate(response)
     }
