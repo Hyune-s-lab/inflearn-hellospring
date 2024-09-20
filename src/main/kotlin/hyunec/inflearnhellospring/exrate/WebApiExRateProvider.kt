@@ -6,23 +6,28 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.math.BigDecimal
 import java.net.HttpURLConnection
-import java.net.URL
+import java.net.URI
 import java.util.stream.Collectors
 
 class WebApiExRateProvider: ExRateProvider {
     override fun getExRate(currency: String): BigDecimal {
-        val url = URL("https://open.er-api.com/v6/latest/${currency}")
-        val connection = url.openConnection() as HttpURLConnection
-        val br = BufferedReader(InputStreamReader(connection.inputStream))
-        val response = br.lines().collect(Collectors.joining("\n"))
-        br.close()
+        val uri = URI("https://open.er-api.com/v6/latest/${currency}")
+        val response = executeApi(uri)
+        return parseExRate(response)
+    }
 
+    private fun parseExRate(response: String): BigDecimal {
         val mapper = ObjectMapper()
         val data = mapper.readValue(response, ExRateData::class.java)
         val exRate = data.rates["KRW"]!!
-
-        println("### API ExRate: $exRate")
-
         return exRate
+    }
+
+    private fun executeApi(uri: URI): String {
+        val connection = uri.toURL().openConnection() as HttpURLConnection
+        val br = BufferedReader(InputStreamReader(connection.inputStream))
+        val response = br.lines().collect(Collectors.joining("\n"))
+        br.close()
+        return response
     }
 }
