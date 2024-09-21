@@ -4,11 +4,13 @@ import hyunec.inflearnhellospring.api.ApiTemplate
 import hyunec.inflearnhellospring.api.ErApiExtractor
 import hyunec.inflearnhellospring.api.HttpClientApiExecutor
 import hyunec.inflearnhellospring.exrate.CachedExRateProvider
-import hyunec.inflearnhellospring.exrate.WebApiExRateProvider
+import hyunec.inflearnhellospring.exrate.RestTemplateExRateProvider
 import hyunec.inflearnhellospring.payment.ExRateProvider
 import hyunec.inflearnhellospring.payment.PaymentService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.client.JdkClientHttpRequestFactory
+import org.springframework.web.client.RestTemplate
 import java.time.Clock
 
 @Configuration
@@ -24,8 +26,14 @@ class PaymentConfig {
     }
 
     @Bean
+    fun restTemplate(): RestTemplate {
+        return RestTemplate(JdkClientHttpRequestFactory())
+    }
+
+    @Bean
     fun exRateProvider(): ExRateProvider {
-        return WebApiExRateProvider(apiTemplate())
+//        return WebApiExRateProvider(apiTemplate())
+        return RestTemplateExRateProvider(restTemplate())
     }
 
     @Bean
