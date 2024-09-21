@@ -3,10 +3,10 @@ package hyunec.inflearnhellospring.api
 import java.math.BigDecimal
 import java.net.URI
 
-class ApiTemplate {
-    private val defaultApiExecutor = HttpClientApiExecutor()
-    private val defaultAExRateExtractor = ErApiExtractor()
-
+class ApiTemplate(
+        private val defaultApiExecutor: ApiExecutor,
+        private val defaultAExRateExtractor: ExRateExtractor
+) {
     fun getExRate(url: String): BigDecimal {
         return getExRate(url, defaultApiExecutor, defaultAExRateExtractor)
     }
