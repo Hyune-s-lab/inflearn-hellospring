@@ -1,5 +1,6 @@
 package hyunec.inflearnhellospring
 
+import hyunec.inflearnhellospring.api.ApiTemplate
 import hyunec.inflearnhellospring.exrate.CachedExRateProvider
 import hyunec.inflearnhellospring.exrate.WebApiExRateProvider
 import hyunec.inflearnhellospring.payment.ExRateProvider
@@ -16,8 +17,13 @@ class PaymentConfig {
     }
 
     @Bean
+    fun apiTemplate(): ApiTemplate {
+        return ApiTemplate()
+    }
+
+    @Bean
     fun exRateProvider(): ExRateProvider {
-        return WebApiExRateProvider()
+        return WebApiExRateProvider(apiTemplate())
     }
 
     @Bean
