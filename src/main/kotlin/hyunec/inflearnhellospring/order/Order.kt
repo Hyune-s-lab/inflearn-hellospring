@@ -1,16 +1,10 @@
 package hyunec.inflearnhellospring.order
 
-import jakarta.persistence.*
 import java.math.BigDecimal
 
-@Entity
-@Table(name = "orders")
 class Order(
-    @Id
-    @GeneratedValue
     val id: Long? = null,
 
-    @Column(unique = true)
     val no: String,
 
     val total: BigDecimal
