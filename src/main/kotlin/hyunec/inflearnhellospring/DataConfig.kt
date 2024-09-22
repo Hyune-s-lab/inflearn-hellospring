@@ -1,6 +1,5 @@
 package hyunec.inflearnhellospring
 
-import hyunec.inflearnhellospring.data.OrderRepository
 import jakarta.persistence.EntityManagerFactory
 import org.springframework.beans.factory.config.BeanPostProcessor
 import org.springframework.context.annotation.Bean
@@ -44,10 +43,5 @@ class DataConfig {
     @Bean
     fun transactionManager(emf: EntityManagerFactory): JpaTransactionManager {
         return JpaTransactionManager(emf)
-    }
-
-    @Bean
-    fun orderRepository(): OrderRepository {
-        return OrderRepository()
     }
 }
