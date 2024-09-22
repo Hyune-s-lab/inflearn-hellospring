@@ -1,5 +1,7 @@
 package hyunec.inflearnhellospring
 
+import hyunec.inflearnhellospring.data.OrderRepository
+import jakarta.persistence.EntityManagerFactory
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder
@@ -29,5 +31,10 @@ class DataConfig {
                 setShowSql(true)
             }
         }
+    }
+
+    @Bean
+    fun orderRepository(emf: EntityManagerFactory): OrderRepository {
+        return OrderRepository(emf)
     }
 }
