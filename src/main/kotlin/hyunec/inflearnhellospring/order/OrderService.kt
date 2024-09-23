@@ -1,6 +1,5 @@
 package hyunec.inflearnhellospring.order
 
-import hyunec.inflearnhellospring.data.OrderRepository
 import org.springframework.orm.jpa.JpaTransactionManager
 import org.springframework.stereotype.Service
 import org.springframework.transaction.support.TransactionTemplate

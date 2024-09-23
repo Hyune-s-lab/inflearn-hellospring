@@ -1,6 +1,7 @@
 package hyunec.inflearnhellospring
 
-import hyunec.inflearnhellospring.data.OrderRepository
+import hyunec.inflearnhellospring.data.JpaOrderRepository
+import hyunec.inflearnhellospring.order.OrderRepository
 import hyunec.inflearnhellospring.order.OrderService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -12,7 +13,7 @@ import org.springframework.orm.jpa.JpaTransactionManager
 class OrderConfig {
     @Bean
     fun orderRepository(): OrderRepository {
-        return OrderRepository()
+        return JpaOrderRepository()
     }
 
     @Bean
