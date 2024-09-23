@@ -12,9 +12,13 @@ class OrderService(
 ) {
     fun createOrder(no: String, total: BigDecimal): Order {
         val order = Order(no = no, total = total)
-        TransactionTemplate(transactionManager).execute {
-            orderRepository.save(order)
-        }
+        orderRepository.save(order)
         return order
+    }
+
+    fun createOrders(reqs: List<OrderReq>): List<Order> {
+        return TransactionTemplate(transactionManager).execute { _ ->
+            reqs.map { req -> createOrder(req.no, req.total) }
+        } ?: emptyList()
     }
 }
