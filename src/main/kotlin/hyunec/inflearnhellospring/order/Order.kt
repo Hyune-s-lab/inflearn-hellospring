@@ -3,7 +3,7 @@ package hyunec.inflearnhellospring.order
 import java.math.BigDecimal
 
 class Order(
-    val id: Long? = null,
+    var id: Long? = null,
 
     val no: String,
 

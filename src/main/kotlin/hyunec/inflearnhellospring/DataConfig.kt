@@ -1,16 +1,10 @@
 package hyunec.inflearnhellospring
 
-import jakarta.persistence.EntityManagerFactory
-import org.springframework.beans.factory.config.BeanPostProcessor
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.jdbc.datasource.DataSourceTransactionManager
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType
-import org.springframework.orm.jpa.JpaTransactionManager
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean
-import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor
-import org.springframework.orm.jpa.vendor.Database
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter
 import org.springframework.transaction.PlatformTransactionManager
 import javax.sql.DataSource
 
@@ -23,26 +17,26 @@ class DataConfig {
             .build()
     }
 
-    @Bean
-    fun entityManagerFactory(): LocalContainerEntityManagerFactoryBean {
-        return LocalContainerEntityManagerFactoryBean().apply {
-            dataSource = dataSource()
-            setPackagesToScan("hyunec.inflearnhellospring")
-            jpaVendorAdapter = HibernateJpaVendorAdapter().apply {
-                setDatabase(Database.H2)
-                setGenerateDdl(true)
-                setShowSql(true)
-            }
-        }
-    }
+//    @Bean
+//    fun entityManagerFactory(): LocalContainerEntityManagerFactoryBean {
+//        return LocalContainerEntityManagerFactoryBean().apply {
+//            dataSource = dataSource()
+//            setPackagesToScan("hyunec.inflearnhellospring")
+//            jpaVendorAdapter = HibernateJpaVendorAdapter().apply {
+//                setDatabase(Database.H2)
+//                setGenerateDdl(true)
+//                setShowSql(true)
+//            }
+//        }
+//    }
+//
+//    @Bean
+//    fun persistenceAnnotationBeanPostProcessor(): BeanPostProcessor {
+//        return PersistenceAnnotationBeanPostProcessor()
+//    }
 
     @Bean
-    fun persistenceAnnotationBeanPostProcessor(): BeanPostProcessor {
-        return PersistenceAnnotationBeanPostProcessor()
-    }
-
-    @Bean
-    fun transactionManager(emf: EntityManagerFactory): PlatformTransactionManager {
-        return JpaTransactionManager(emf)
+    fun transactionManager(): PlatformTransactionManager {
+        return DataSourceTransactionManager(dataSource())
     }
 }
