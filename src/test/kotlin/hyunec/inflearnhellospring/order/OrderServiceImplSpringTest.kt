@@ -17,7 +17,7 @@ import kotlin.test.Test
 
 @ExtendWith(SpringExtension::class)
 @ContextConfiguration(classes = [OrderConfig::class])
-class OrderServiceSpringTest(
+class OrderServiceImplSpringTest(
     @Autowired private val orderService: OrderService,
     @Autowired private val dataSource: DataSource
 ) {
