@@ -1,8 +1,10 @@
 package hyunec.inflearnhellospring.order
 
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.math.BigDecimal
 
+@Transactional
 @Service
 class OrderServiceImpl(
     private val orderRepository: OrderRepository,
